@@ -43,11 +43,13 @@ public class TaskUpdateUiApplication {
     }
 
     @RequestMapping("table_ui")
-    public String home() throws IOException {
+    public String home() throws IOException, org.json.simple.parser.ParseException {
         /* *****************Reading**************************************** */
-        HashMap<String, String> readData = reader.reading();
-        System.out.println("Read Data:\t"+readData);
-        jsonConv.writeInput(readData);
+        HashMap<String, String> readData;
+        //readData = reader.reading();
+        readData=readFromJSON.readFromJSON();
+        //System.out.println("Read Data:\t"+readData);
+        //jsonConv.writeInput(readData);
         //System.out.println(readData.get("Account Open Date"));
         Date javaDate= DateUtil.getJavaDate(Double.parseDouble((String) readData.get("Account Open Date")));
 
